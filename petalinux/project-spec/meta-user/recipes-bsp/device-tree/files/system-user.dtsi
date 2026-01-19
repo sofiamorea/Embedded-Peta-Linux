@@ -1,0 +1,10 @@
+#include "system-conf.dtsi"
+
+/ {
+};
+
+&usb0 {
+    status = "okay";
+    dr_mode = "host";
+};
+
