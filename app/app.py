@@ -1,15 +1,20 @@
-from flask import Flask, Response, render_template_string
-import cv2
+# Descripcion: desarrollo de una aplicacion para la deteccion facial.          
+# Funcionamiento: a traves de una interfaz grafica se muestra la imagen obtenida para la deteccion,
+#                 el puerto de entrada y el numero de detecciones.
+from flask import Flask, Response, render_template_string     # Libreria para la creacion del servidor web
+import cv2                                                    # Libreria para el procesamiento de imagenes y video en tiempo real
 import numpy as np
 
-app = Flask(__name__)
+app = Flask(__name__)   # Generacion del servidor web
 
-CAM_INDEX = 1  # tu camara USB (cambia 0/1/2 si hace falta)
+# Inicializacion del controlador de la camara
+CAM_INDEX = 1  # Indice para la seleccion de la camara, en este caso solo 1
 
 cap = cv2.VideoCapture(CAM_INDEX)
 if not cap.isOpened():
     raise RuntimeError("No se pudo abrir la camara. Cambia CAM_INDEX (0/1/2).")
 
+# Inicializacion de la interfaz del servidor web
 PAGE = """
 <!doctype html>
 <html>
@@ -39,46 +44,57 @@ PAGE = """
 """
 
 def process_frame(frame):
-    # Redimensionar para estabilidad (igual que tu codigo)
+    # Descripcion: procesamiento del frame para realizar la deteccion
+    # Entradas: frame: contiene el frame a analizar
+    # Salida: frame
+    #         impresion del numero de detecciones en la interfaz web
+
+    # Redimensionamiento del frame de entrada
     frame = cv2.resize(frame, (640, 480))
 
-    # Convertir a HSV
+     # Conversion a HSV (Hue, Saturation, Color)
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
 
-    # Rango aproximado de color de piel
+    # Rango aproximado del color de piel
     lower_skin = np.array([0, 30, 60])
     upper_skin = np.array([20, 150, 255])
 
-    # Mascara de piel
+    # Mascara de piel para la seleccion de aquellos pixeles que se encuentren 
+    # en los posibles tonos de piel
     mask = cv2.inRange(hsv, lower_skin, upper_skin)
 
-    # Limpiar ruido
+    # Filtrado del ruido del frame
     kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (5, 5))
     mask = cv2.erode(mask, kernel, iterations=2)
     mask = cv2.dilate(mask, kernel, iterations=2)
 
-    # Buscar contornos
+    # Busqueda de contornos en el frame despues de aplicar la mascara
     contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
+    # Almacena el numero de rostros detectados
     face_count = 0
 
+    # Deteccion facial
     for cnt in contours:
+        # Area del contorno seleccionado
         area = cv2.contourArea(cnt)
 
-        # Filtrar objetos pequeños
+        # Descarta las areas de menor dimension
         if area < 3000:
             continue
-
+            
+        # Generacion del rectangulo en el que se encuadrara el rostro
         x, y, w, h = cv2.boundingRect(cnt)
 
-        # Filtro de proporcion
+         # Descarta los frame que no se ajusten a las dimensiones esperadas en un rostro
         ratio = h / float(w)
         if ratio < 0.9 or ratio > 1.8:
             continue
 
+        # Aumenta el numero de deteccion
         face_count += 1
 
-        # Rectangulo + etiqueta
+        # Actualizacion del frame 
         cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
         cv2.putText(
             frame,
@@ -90,7 +106,7 @@ def process_frame(frame):
             2
         )
 
-    # Texto superior
+    # Actualizacion del contador
     cv2.putText(
         frame,
         f"Caras detectadas: {face_count}",
@@ -104,25 +120,31 @@ def process_frame(frame):
     return frame
 
 def gen_frames():
+    # Descripcion: obtencion de los frames y llamada a la funcion de procesamiento
+
+    # Se obtienen los frames de forma continuada
     while True:
         ok, frame = cap.read()
         if not ok:
             break
-
+            
+        # Llamada a la funcion de procesamiento
         frame = process_frame(frame)
 
-        # Codificar a JPEG para streaming
+        # El frame se codifica en formato jpg para realizar el streaming
         ok, buffer = cv2.imencode(".jpg", frame)
         if not ok:
             continue
-
+            
+        # Retransmision del frame en el servidor web
         yield (b"--frame\r\n"
                b"Content-Type: image/jpeg\r\n\r\n" + buffer.tobytes() + b"\r\n")
 
+# Seleccion de las interfaces que se mostraran segun la ruta
 @app.route("/")
 def index():
     return render_template_string(PAGE)
-
+    
 @app.route("/video_feed")
 def video_feed():
     return Response(gen_frames(),
