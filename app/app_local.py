@@ -1,59 +1,69 @@
-import cv2
+# Descripcion: desarrollo de una aplicacion para la deteccion facial.          
+# Funcionamiento: procesamiento de los frame de la imagen
+import cv2            # Libreria para el procesamiento de imagenes y video en tiempo real
 import numpy as np
 
-# Abrir cámara USB (cambia 0/1/2 si hace falta)
+# Inicializacion de la camara
 cap = cv2.VideoCapture(0)
 
 if not cap.isOpened():
     print("No se pudo abrir la cámara")
     exit()
 
+# Procesamiento continuo de los frame de entrada
 while True:
     ret, frame = cap.read()
     if not ret:
         break
 
-    # Redimensionar para estabilidad
+    # Redimensionamiento del frame de entrada
     frame = cv2.resize(frame, (640, 480))
 
-    # Convertir a HSV
+    # Conversion a HSV (Hue, Saturation, Color)
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
 
-    # Rango aproximado de color de piel
+    # Rango aproximado del color de piel
     lower_skin = np.array([0, 30, 60])
     upper_skin = np.array([20, 150, 255])
 
-    # Máscara de piel
+    # Mascara de piel para la seleccion de aquellos pixeles que se encuentren 
+    # en los posibles tonos de piel
     mask = cv2.inRange(hsv, lower_skin, upper_skin)
 
-    # Limpiar ruido
+    # Filtrado del ruido del frame
     kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (5, 5))
     mask = cv2.erode(mask, kernel, iterations=2)
     mask = cv2.dilate(mask, kernel, iterations=2)
 
-    # Buscar contornos
+    # Busqueda de contornos en el frame despues de aplicar la mascara
     contours, _ = cv2.findContours(
         mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE
     )
 
+    # Almacena el numero de rostros detectados
     face_count = 0
 
+    # Deteccion facial
     for cnt in contours:
+        # Area del contorno seleccionado
         area = cv2.contourArea(cnt)
 
-        # Filtrar objetos pequeños
+        # Descarta las areas de menor dimension
         if area < 3000:
             continue
 
+        # Generacion del rectangulo en el que se encuadrara el rostro
         x, y, w, h = cv2.boundingRect(cnt)
 
-        # Filtro de proporción (cara ≈ rectángulo vertical)
+        # Descarta los frame que no se ajusten a las dimensiones esperadas en un rostro
         ratio = h / float(w)
         if ratio < 0.9 or ratio > 1.8:
             continue
 
+        # Aumenta el numero de deteccion
         face_count += 1
 
+        # Actualizacion del frame
         cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
         cv2.putText(
             frame,
@@ -65,7 +75,7 @@ while True:
             2
         )
 
-    # Texto superior
+    # Actualizacion del contador
     cv2.putText(
         frame,
         f"Caras detectadas: {face_count}",
