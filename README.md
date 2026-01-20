@@ -122,15 +122,36 @@ La siguiente figura muestra el diagrama de flujo seguido:
 
 <img width="300" height="600" alt="Screenshot 2026-01-20 132424" src="https://github.com/user-attachments/assets/4cd6932a-3b04-4c65-8141-7815174b436d" />
 
-Analizando las funciones principales:
-1. Inicialización:
-  1. Inicialización de los controladores e interfaz gráfica.
-  2. Obtención de los frames de datos
-2. Procesamiento de la imagen:
-  1. Aplicación de la máscara para detectar el tono de la piel
-  2. Detección del contorno.
-  3. Filtrado de ruido.
-  4. Descartar áreas pequeñas en las que no se pueda encontrar un rostro.
-  5. Actualización del frame y contador.
-3. Actualización de la interfaz gráfica.
+En primer lugar se realiza la inicialización de los controladores e interfaz gráfica así como la obtención de los frames de datos. A continuación se implementa el procesamiento 
+de la imagen a traves de los siguientes pasos:
+ 1. Aplicación de la máscara para detectar el tono de la piel
+ 2. Detección del contorno.
+ 3. Filtrado de ruido.
+ 4. Descartar áreas pequeñas en las que no se pueda encontrar un rostro.
+    
+Por último se realiza la actualización de la interfaz gráfica encuadrando el rostro y mostrando el contador de detecciones.
+
+### Resultados y conclusión
+A través de este proyecto se ha estudiado el flujo de trabajo del desarrollo de aplicaciones de Linux Embebido así como la herramienta Petalinux que facilita la generación de 
+imagenes así como la configuración de las mismas. 
+
+### Bibliografía
+[1] AMD Tools and Win10 WSL. Trenz Electronic Documentation. URL: https://wiki.trenz-electronic.de/display/PD/AMD+Tools+and+Win10+WSL#AMDToolsandWin10WSL-NotesandHintsandotherstuff
+
+[2] 73296 - PetaLinux: How to install the required packages for the PetaLinux Build Host? AMD Adaptative Support. URL: https://adaptivesupport.amd.com/s/article/73296?language=zh_CN
+
+[3] Installation Steps. AMD Technical Information Portal. URL: https://docs.amd.com/r/2022.1-English/ug1144-petalinux-tools-reference-guide/Installing-the-PetaLinux-Tool
+
+[4] Petalinux Prebuild Images 2020.2 Release. URL: https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/1065451521/2020.2+Release
+
+[5] Petalinux BSP installaation. AMD Technical Information Portal. URL: https://docs.amd.com/r/2020.2-English/ug1144-petalinux-tools-reference-guide/PetaLinux-BSP-Installation
+
+[6] AMD Petalinux Tools. AMD. URL: https://www.amd.com/es/products/software/adaptive-socs-and-fpgas/embedded-software/petalinux-sdk.html
+
+[7] Petalinux. Trenz Electronic Documentation.  https://wiki.trenz-electronic.de/display/PD/PetaLinux
+
+
+
+
+
 
