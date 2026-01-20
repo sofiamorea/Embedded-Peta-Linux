@@ -61,7 +61,21 @@ sudo picocom -b 115200 /dev/ttyUSB1
  ```
 ping direccion.ip
 ```
+
 ### Troubleshooting
  En caso de errores de tipo "bad address" pueden ser utiles estas referencias
 https://support.xilinx.com/s/question/0D52E00006hpTKeSAM/petalinux-201310-can-ping-outside-web-site
  https://support.xilinx.com/s/question/0D52E00006hpRxBSAU/petalinux-build-ethernet-not-working-cannot-ping
+
+### Requisitos Funcionales
+El sistema debe: 
+  1. Permitir la captura de vídeo a través de una cámara conectada al puerto USB de la tarjeta PYNQ-Z2.
+  2. Realizar la detección facial en tiempo real sobre el vídeo de entrada.
+  3. Calcular y mostrar el número de rostros detectados en cada frame procesado.
+  4. Retransmitir el vídeo procesado hacia un servidor web para su visualización desde un navegador en la red local.
+
+### Requisitos No funcionales
+El sistema debe:
+  1. Garantizar un procesamiento y retransmisión del vídeo en tiempo real.
+  2. Presentar una interfaz gráfica intuitiva y fácil de usar, accesible desde un navegador web.
+  3. Mostrar un código estructurado de forma modular, para facilitar comprensión y futuras ampliaciones.
