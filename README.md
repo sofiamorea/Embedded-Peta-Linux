@@ -115,11 +115,11 @@ La placa recibe la señal de vídeo a través del puerto USB, la procesa interna
 Este montaje permite la ejecución de la aplicación sobre Linux embebido, integrando adquisición de vídeo, procesamiento en tiempo real y visualización remota a través de un servidor web.
 
 El conexionado entre ambos se realiza a través del puerto USB, accediendo a la interfaz web mediante Ethernet.
-<img width="1024" height="624" alt="Screenshot 2026-01-20 132153" src="https://github.com/user-attachments/assets/c5c3357e-f0e7-430f-aec3-dcfe94dbd870" />
+<img width="500" height="624" alt="Screenshot 2026-01-20 132153" src="https://github.com/user-attachments/assets/c5c3357e-f0e7-430f-aec3-dcfe94dbd870" />
 
 #### Software:
 La siguiente figura muestra el diagrama de flujo seguido:
-<img width="378" height="900" alt="Screenshot 2026-01-20 132424" src="https://github.com/user-attachments/assets/4cd6932a-3b04-4c65-8141-7815174b436d" />
+<img width="378" height="955" alt="Screenshot 2026-01-20 132424" src="https://github.com/user-attachments/assets/4cd6932a-3b04-4c65-8141-7815174b436d" />
 
 Analizando las funciones principales:
   1. Inicialización:
