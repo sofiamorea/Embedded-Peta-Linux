@@ -124,13 +124,13 @@ La siguiente figura muestra el diagrama de flujo seguido:
 
 Analizando las funciones principales:
 1. Inicialización:
- 1. Inicialización de los controladores e interfaz gráfica.
- 2. Obtención de los frames de datos
+  1. Inicialización de los controladores e interfaz gráfica.
+  2. Obtención de los frames de datos
 2. Procesamiento de la imagen:
- 1. Aplicación de la máscara para detectar el tono de la piel
- 2. Detección del contorno.
- 3. Filtrado de ruido.
- 4. Descartar áreas pequeñas en las que no se pueda encontrar un rostro.
- 5. Actualización del frame y contador.
+  1. Aplicación de la máscara para detectar el tono de la piel
+  2. Detección del contorno.
+  3. Filtrado de ruido.
+  4. Descartar áreas pequeñas en las que no se pueda encontrar un rostro.
+  5. Actualización del frame y contador.
 3. Actualización de la interfaz gráfica.
 
