@@ -28,34 +28,35 @@ sudo apt update
 ```
 sudo bash /<ruta-a-script>/plnx-env-setup.sh
 ```
+Este script se ha descargado en https://adaptivesupport.amd.com/s/article/73296?language=zh_CN
  11.	Instalación de Petalinux.
 ```
 bash /<ruta-a-instalador>/petalinux-v2020.2-final-installer.run --dir /ruta-a-directorio/petalinux/2020.2
 ```
 
- Una vez finalizada la instalación, el flujo de trabajo es el siguiente:
+ Una vez finalizada la instalación, el flujo de trabajo para la generación de la imagen es:
 
-### Cargar el entorno de PetaLinux
+1. Cargar el entorno de PetaLinux
 ```console
 source ./settings.sh
 ```
 
-### Crear un nuevo proyecto PetaLinux para Zynq
+2. Crear un nuevo proyecto PetaLinux para Zynq
 ```
 petalinux-create project --template zynq --name /ruta/a/proyecto
 ```
 
-### Importar la descripción de hardware generada en Vivado (.xsa)
+3. Importar la descripción de hardware generada en Vivado (.xsa)
 ```
 petalinux-config --get-hw-description /ruta/al/archivo/XSA
 ```
-### Construcción del sistema
+4. Construcción del sistema
 Nota! Este paso puede tardar bastante tiempo
 ```
 petalinux-build
 ```
 
-### Generación de la imagen de arranque
+5. Generación de la imagen de arranque
 ```
 cd ./images/linux
 petalinux-package --boot \
@@ -65,7 +66,7 @@ petalinux-package --boot \
   --force
 ```
 
-### Comprobaciones
+6. Comprobaciones
 Una vez arrancada la placa, desde la consola UART
 se puede comprobar la dirección IP con:
 ```
