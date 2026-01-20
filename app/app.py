@@ -149,7 +149,8 @@ def index():
 def video_feed():
     return Response(gen_frames(),
                     mimetype="multipart/x-mixed-replace; boundary=frame")
-
+    
+# Puesta en funcionamiento del servidor
 if __name__ == "__main__":
     # 0.0.0.0 => accesible desde otros dispositivos en la misma red
     app.run(host="0.0.0.0", port=5000, debug=False, threaded=True)
