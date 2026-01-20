@@ -29,6 +29,7 @@ sudo apt update
 sudo bash /<ruta-a-script>/plnx-env-setup.sh
 ```
 Este script se ha descargado en https://adaptivesupport.amd.com/s/article/73296?language=zh_CN
+
  11.	Instalación de Petalinux.
 ```
 bash /<ruta-a-instalador>/petalinux-v2020.2-final-installer.run --dir /ruta-a-directorio/petalinux/2020.2
@@ -91,6 +92,8 @@ ping direccion.ip
  En caso de errores de tipo "bad address" pueden ser utiles estas referencias
 https://support.xilinx.com/s/question/0D52E00006hpTKeSAM/petalinux-201310-can-ping-outside-web-site
  https://support.xilinx.com/s/question/0D52E00006hpRxBSAU/petalinux-build-ethernet-not-working-cannot-ping
+
+ Tanto el proceso de instalación como generación de la imagen se ha automatizado a través de dos scripts.
 
 ### Requisitos Funcionales
 El sistema debe: 
