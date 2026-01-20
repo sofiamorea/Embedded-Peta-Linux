@@ -107,3 +107,25 @@ El sistema debe:
   1. Garantizar un procesamiento y retransmisión del vídeo en tiempo real.
   2. Presentar una interfaz gráfica intuitiva y fácil de usar, accesible desde un navegador web.
   3. Mostrar un código estructurado de forma modular, para facilitar comprensión y futuras ampliaciones.
+
+     
+### Arquitectura del sistema Hardware:
+El sistema se basa en la tarjeta PYNQ-Z2, configurada con un entorno de Linux embebido generado mediante PetaLinux. 
+La placa recibe la señal de vídeo a través del puerto USB, la procesa internamente y retransmite los resultados mediante la conexión Ethernet hacia la red local. 
+Este montaje permite la ejecución de la aplicación sobre Linux embebido, integrando adquisición de vídeo, procesamiento en tiempo real y visualización remota a través de un servidor web.
+![HW](https://github.com/user-attachments/assets/f3db1c78-f7e5-4ac9-93cb-8ee759db5b5d)
+
+
+### Software:
+![SW](https://github.com/user-attachments/assets/76c86b6d-81a3-4a0e-acc4-f3c69d1cd3bc)
+
+  1. Funciones principales:
+     1.1 Inicialización de los controladores e interfaz gráfica.
+     1.2 Obtención de los frames de datos.
+  2. Procesamiento de la imagen:
+     2.1 Aplicar máscara del tono de la piel.
+     2.2 Detección del contorno.
+     2.3 Filtrado de ruido.
+     2.4 Descartar areas pequeñas.
+     2.5 Actualización del frame y contador.
+  3. Actualización de la interfaz gráfica.
