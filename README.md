@@ -119,8 +119,8 @@ El conexionado entre ambos se realiza a través del puerto USB, accediendo a la 
 
 #### Software:
 La siguiente figura muestra el diagrama de flujo seguido:
-<img width="378" height="600" alt="Screenshot 2026-01-20 132424" src="https://github.com/user-attachments/assets/4cd6932a-3b04-4c65-8141-7815174b436d" />
 
+<img width="378" height="600" alt="Screenshot 2026-01-20 132424" src="https://github.com/user-attachments/assets/4cd6932a-3b04-4c65-8141-7815174b436d" />
 
 Analizando las funciones principales:
   1. Inicialización:
