@@ -1,13 +1,37 @@
 # Embedded-Peta-Linux
 Embedded Linux development on Zynq™ using Vivado™
 
+El proyecto se basa en la creación de una aplicación para detección de rostros desde formato video. El material hardware principal es la tarjeta PYNQ-Z2 en la que se incluye una imagen de Linux embebido que permite la ejecución del programa generado en Python. A continuación se mostrará el desarrollo de la misma así como los resultados obtenidos.
+
 Lista de los comandos utilizados durante el proceso
 
-
 ### Instalación de PetaLinux
- Enlace oficial:
-https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/embedded-design-tools.html
-
+Para la generación de la imagen de Linux se utilizará la herramienta de AMD Petalinux. Esta herramienta incluye diferentes funcionalidades facilitando así el desarrollo de sistemas embebidos Linux, además del indicado anteriormente esta permite la generación del BPS que posibilita el acceso a los controladores del dispositivo o incluye instrucciones para la gestión del acceso a red.
+La versión de Petalinux que se instalará es la 2020.2, igual a la utilizada para el desarrollo de las prácticas a través de Vivado y Vitis. La versión de Ubuntu será la 18.04.6 LTS, indicada en [1] para garantizar que el proceso se realice correctamente. Una vez descargada el archivo de instalación de Petalinux (en el directorio en el que se instalará) los pasos a realizar son:
+ 1.	Creación del directorio para la instalación en Linux.
+ ```
+mkdir -p /petalinux/2020.2
+```
+ 3.	Reconfiguración de la consola para la utilización de bash (se debe seleccionar no)
+```
+sudo dpkg-reconfigure dash
+```
+ 5.	Descarga de los paquetes correspodientes a la arquitectura i386.
+```
+sudo dpkg --add-architecture i386
+```
+ 7.	Actualización de los paquetes de Ubuntu.
+```
+sudo apt update
+```
+ 9.	Instalación de las dependencias necesarias para Petalinux, estas se incluyen en el fichero “plnx-env-setup.sh”
+```
+sudo bash /<ruta-a-script>/plnx-env-setup.sh
+```
+ 11.	Instalación de Petalinux.
+```
+bash /<ruta-a-instalador>/petalinux-v2020.2-final-installer.run --dir /ruta-a-directorio/petalinux/2020.2
+```
 
  Una vez finalizada la instalación, el flujo de trabajo es el siguiente:
 
