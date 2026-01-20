@@ -108,7 +108,8 @@ Por otra parte los no funcionales:
   3. Mostrar un código estructurado de forma modular, para facilitar comprensión y futuras ampliaciones.
 
      
-### Arquitectura del sistema Hardware:
+### Arquitectura del sistema:
+#### Hardware:
 El sistema se basa en la tarjeta PYNQ-Z2, configurada con un entorno de Linux embebido generado mediante PetaLinux. 
 La placa recibe la señal de vídeo a través del puerto USB, la procesa internamente y retransmite los resultados mediante la conexión Ethernet hacia la red local. 
 Este montaje permite la ejecución de la aplicación sobre Linux embebido, integrando adquisición de vídeo, procesamiento en tiempo real y visualización remota a través de un servidor web.
@@ -116,7 +117,7 @@ Este montaje permite la ejecución de la aplicación sobre Linux embebido, integ
 El conexionado entre ambos se realiza a través del puerto USB, accediendo a la interfaz web mediante Ethernet.
 <img width="1024" height="624" alt="Screenshot 2026-01-20 132153" src="https://github.com/user-attachments/assets/c5c3357e-f0e7-430f-aec3-dcfe94dbd870" />
 
-### Software:
+#### Software:
 La siguiente figura muestra el diagrama de flujo seguido:
 <img width="378" height="955" alt="Screenshot 2026-01-20 132424" src="https://github.com/user-attachments/assets/4cd6932a-3b04-4c65-8141-7815174b436d" />
 
