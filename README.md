@@ -120,17 +120,17 @@ El conexionado entre ambos se realiza a través del puerto USB, accediendo a la 
 #### Software:
 La siguiente figura muestra el diagrama de flujo seguido:
 
-<img width="378" height="600" alt="Screenshot 2026-01-20 132424" src="https://github.com/user-attachments/assets/4cd6932a-3b04-4c65-8141-7815174b436d" />
+<img width="300" height="600" alt="Screenshot 2026-01-20 132424" src="https://github.com/user-attachments/assets/4cd6932a-3b04-4c65-8141-7815174b436d" />
 
 Analizando las funciones principales:
-  1. Inicialización:
-     1.1 Inicialización de los controladores e interfaz gráfica.
-     1.2 Obtención de los frames de datos.
-  2. Procesamiento de la imagen:
-     2.1 Aplicación de la máscara para detectar el tono de la piel
-     2.2 Detección del contorno.
-     2.3 Filtrado de ruido.
-     2.4 Descartar áreas pequeñas en las que no se pueda encontrar un rostro.
-     2.5 Actualización del frame y contador.
-  3. Actualización de la interfaz gráfica.
+1. Inicialización:
+   1.1 Inicialización de los controladores e interfaz gráfica.
+   1.2 Obtención de los frames de datos
+2. Procesamiento de la imagen:
+   2.1 Aplicación de la máscara para detectar el tono de la piel
+   2.2 Detección del contorno.
+   2.3 Filtrado de ruido.
+   2.4 Descartar áreas pequeñas en las que no se pueda encontrar un rostro.
+   2.5 Actualización del frame y contador.
+3. Actualización de la interfaz gráfica.
 
