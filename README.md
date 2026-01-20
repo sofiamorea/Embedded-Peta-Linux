@@ -113,8 +113,7 @@ El sistema debe:
 El sistema se basa en la tarjeta PYNQ-Z2, configurada con un entorno de Linux embebido generado mediante PetaLinux. 
 La placa recibe la señal de vídeo a través del puerto USB, la procesa internamente y retransmite los resultados mediante la conexión Ethernet hacia la red local. 
 Este montaje permite la ejecución de la aplicación sobre Linux embebido, integrando adquisición de vídeo, procesamiento en tiempo real y visualización remota a través de un servidor web.
-![HW](https://github.com/user-attachments/assets/f3db1c78-f7e5-4ac9-93cb-8ee759db5b5d)
-
+<img src="[https://github.com/user-attachments/assets/f3db1c78-f7e5-4ac9-93cb-8ee759db5b5d]" height="50%">
 
 ### Software:
 ![SW](https://github.com/user-attachments/assets/76c86b6d-81a3-4a0e-acc4-f3c69d1cd3bc)
